@@ -1,0 +1,37 @@
+* {
+	font-family: 'segoe ui';
+	font-size: 14px;
+}
+
+#menu {
+	top: 0px;
+	left: 0px;
+	position: inherit;
+	margin: 5px;
+	width: 250px;
+}
+
+#aree {
+	border-collapse: collapse;
+	border-color: rgb(136, 136, 136);
+	border-width: 1px;
+	width: 250px;
+}
+
+#contenuto {
+	top: 0px;
+	left: 260px;
+	width: calc(100% - 270px);
+	position: absolute;
+	margin: 5px;
+}
+
+.dispari {
+	background-color: #FCF6CF;
+	color: black;
+}
+
+.pari {
+	background-color: #FEFEF2;
+	color: black;
+}
