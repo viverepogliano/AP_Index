@@ -1,0 +1,82 @@
+<html>
+
+<head>
+	<title>Concessioni Edilizie</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<script>function openAll(elem) { elem.parentElement.querySelectorAll("a").forEach(function (a) { console.log(a.href); window.open(a.href, '_blank'); window.focus(); }); }</script>
+</head>
+
+<!-- // [[
+//     "id": <id>,
+//     "pubblicazione": <pubblicazione>, 
+//     "titolo": <titolo>, 
+//     "docs": [[ 
+//         "docTitolo": <docTitolo>, 
+//         "percorso": <percorso>
+//     ]]
+// ]] -->
+
+<body>
+	<table width='100%' border='1' bordercolor='#888' cellspacing='0'
+		style='border-collapse:collapse;border-color:rgb(136,136,136);border-width:1px'>
+		<tbody>
+			<tr>
+				<th />
+				<th style='width:10%'>id</th>
+				<th style='width:10%'>Data</th>
+				<th style='width:60%'>Titolo</th>
+				<th style='width:20%'>Documenti</th>
+			</tr>
+			<tr class='dispari'>
+				<td style='color:red'></td>
+				<td>
+					<a target='_blank'
+						href="https://portale.comune.poglianomilanese.mi.it/openweb/albo/albo_dettagli_full.php?id=12390">12390</a>
+				</td>
+				<td>07/04/2020</td>
+				<td>PERMESSO DI COSTRUIRE N. PDCS/4/2020</td>
+				<td style='text-align:left'>
+					<ul>
+						<li><a target='_blank' href="https://portale.comune.poglianomilanese.mi.it/openweb/portal/getDoc.php?t&#61;downloadExt&amp;f&#61;documenti/allegato1586249185.pdf.p7m">Documento principale</a></li>
+					<!-- <br /> -->
+					</ul>
+					<input type="button" value="apri tutti" onClick="openAll(this)" />
+				</td>
+			</tr>
+			<tr class='pari'>
+				<td style='color:red'></td>
+				<td>
+					<a target='_blank'
+						href="https://portale.comune.poglianomilanese.mi.it/openweb/albo/albo_dettagli_full.php?id=12389">12389</a>
+				</td>
+				<td>07/04/2020</td>
+				<td>PERMESSO DI COSTRUIRE N. PDCS/3/2020</td>
+				<td style='text-align:left'>
+					<ul>
+						<li><a target='_blank' href="https://portale.comune.poglianomilanese.mi.it/openweb/portal/getDoc.php?t&#61;downloadExt&amp;f&#61;documenti/allegato1586249065.pdf.p7m">Documento principale</a></li>
+					<!-- <br /> -->
+					</ul>
+					<input type="button" value="apri tutti" onClick="openAll(this)" />
+				</td>
+			</tr>
+			<tr class='dispari'>
+				<td style='color:red'></td>
+				<td>
+					<a target='_blank'
+						href="https://portale.comune.poglianomilanese.mi.it/openweb/albo/albo_dettagli_full.php?id=12388">12388</a>
+				</td>
+				<td>03/04/2020</td>
+				<td>PERMESSO DI COSTRUIRE N. PDCO/1/2020</td>
+				<td style='text-align:left'>
+					<ul>
+						<li><a target='_blank' href="https://portale.comune.poglianomilanese.mi.it/openweb/portal/getDoc.php?t&#61;downloadExt&amp;f&#61;documenti/allegato1586248923.pdf.p7m">Documento principale</a></li>
+					<!-- <br /> -->
+					</ul>
+					<input type="button" value="apri tutti" onClick="openAll(this)" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>
