@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Albo Pretorio Pogliano Milanese</title>
-<script src="jquery-2.1.4.min.js"></script>
-<link rel="stylesheet" type="text/css" href="index.css">
+	<meta charset="UTF-8">
+	<title>Albo Pretorio Pogliano Milanese</title>
+	<script src="index.js"></script>
+	<link rel="stylesheet" type="text/css" href="index.css">
 </head>
+
 <body>
 	<div id="menu">
 		<div id="update">Ultimo aggiornamento: 12/12/2024</div><br>
-		<table width='100%' border='1' bordercolor='#888' cellspacing='0' style='border-collapse:collapse;border-color:rgb(136,136,136);border-width:1px'>
+		<table width='100%' border='1' bordercolor='#888' cellspacing='0'
+			style='border-collapse:collapse;border-color:rgb(136,136,136);border-width:1px'>
 			<tbody>
 				<tr class='dispari'>
 					<td style='color:red'></td>
-					<td><a href='index_AlboBeneficiariDiProvvidenze.html' target='contenuto'>Albo Beneficiari Di Provvidenze</a><br /></td>
+					<td><a href='index_AlboBeneficiariDiProvvidenze.html' target='contenuto'>Albo Beneficiari Di
+							Provvidenze</a><br /></td>
 				</tr>
 				<tr class='pari'>
 					<td style='color:red'>!</td>
@@ -53,15 +57,18 @@
 				</tr>
 				<tr class='dispari'>
 					<td style='color:red'></td>
-					<td><a href='index_DetermineAccertamento.html' target='contenuto'>Determine Accertamento</a><br /></td>
+					<td><a href='index_DetermineAccertamento.html' target='contenuto'>Determine Accertamento</a><br />
+					</td>
 				</tr>
 				<tr class='pari'>
 					<td style='color:red'></td>
-					<td><a href='index_ElenchiIncarichiEsterni.html' target='contenuto'>Elenchi Incarichi Esterni</a><br /></td>
+					<td><a href='index_ElenchiIncarichiEsterni.html' target='contenuto'>Elenchi Incarichi
+							Esterni</a><br /></td>
 				</tr>
 				<tr class='dispari'>
 					<td style='color:red'></td>
-					<td><a href='index_ElencoSocietaPartecipate.html' target='contenuto'>Elenco Societa Partecipate</a><br /></td>
+					<td><a href='index_ElencoSocietaPartecipate.html' target='contenuto'>Elenco Societa
+							Partecipate</a><br /></td>
 				</tr>
 				<tr class='pari'>
 					<td style='color:red'></td>
@@ -69,7 +76,8 @@
 				</tr>
 				<tr class='dispari'>
 					<td style='color:red'></td>
-					<td><a href='index_OperazioneTrasparenza.html' target='contenuto'>Operazione Trasparenza</a><br /></td>
+					<td><a href='index_OperazioneTrasparenza.html' target='contenuto'>Operazione Trasparenza</a><br />
+					</td>
 				</tr>
 				<tr class='pari'>
 					<td style='color:red'>!</td>
@@ -77,7 +85,8 @@
 				</tr>
 				<tr class='dispari'>
 					<td style='color:red'>!</td>
-					<td><a href='index_PubblicazioneDiMatrimonio.html' target='contenuto'>Pubblicazione di Matrimonio</a><br /></td>
+					<td><a href='index_PubblicazioneDiMatrimonio.html' target='contenuto'>Pubblicazione di
+							Matrimonio</a><br /></td>
 				</tr>
 			</tbody>
 		</table>
@@ -88,103 +97,6 @@
 
 	<div id="contenuto"></div>
 
-	<script>
-		var openContenuto = function(href) {
-			$.get(href, function(data) {
-				$("#contenuto").html(data);
-				sistemaLink($("#contenuto table"), href);
-			});
-		};
-
-		var sistemaLink = function(parent, href) {
-			const table = parent[0]
-			// console.log( table )
-			// console.log( table.rows )
-			const rows = Array.from(table.rows).filter( e => e.style.display !== 'none')
-			// console.log( rows )
-			if (rows.length == 1) {
-				const div = table.parentElement
-				div.style.display = 'none'
-				const h1 = div.previousSibling
-				h1.style.display = 'none'
-				return
-			}
-
-			parent.find("a").each(function() {
-				var docHref = $(this).attr("href");
-				if (!docHref.startsWith("http")) {
-					docHref = href.replace(/\/.*$/, "/" + docHref);
-					$(this).attr("href", docHref);
-				}
-			});
-		}
-
-		var aggiungiTabella = function(pos, idTableDiv, title, data) {
-			var newHtml = $("#contenuto").html() + "<h1>" + (pos + 1) + ". "
-					+ title + "</h1>" + "<div id='" + idTableDiv + "'>" + data
-					+ "</div>";
-			$("#contenuto").html(newHtml);
-		}
-
-		var cercaInTabella = function(idTableDiv) {
-			var table = $("#" + idTableDiv + " table");
-			var allRows = table.find('tr');
-			allRows.each(function(index, row) {
-				var allCells = $(row).find('td');
-				if (allCells.length > 0) {
-					var found = false;
-					allCells.each(function(index, td) {
-						var regExp = new RegExp($("#testo").val(), 'i');
-						if (regExp.test($(td).text())) {
-							found = true;
-							return false;
-						}
-					});
-					if (found == true)
-						$(row).show();
-					else
-						$(row).hide();
-				}
-			});
-		}
-
-		var caricaPagina = function(pos) {
-			var idTableDiv = "tableDiv-" + pos;
-			var href = $(this).attr("href");
-			var title = $(this).text();
-			$.get(href, function(data) {
-				aggiungiTabella(pos, idTableDiv, title, data);
-				cercaInTabella(idTableDiv);
-				sistemaLink($("#" + idTableDiv + " table	"), href);
-			});
-		}
-
-		$(document).ready(function() {
-			$("a").each(function() {
-				$(this).click(function(e) {
-					e.preventDefault();
-					openContenuto($(this).attr("href"));
-				});
-			});
-
-			$("#cerca").attr('disabled', 'disabled');
-			$("#testo").keyup(function() {
-				if ($(this).val() != '') {
-					$("#cerca").removeAttr('disabled');
-				} else {
-					$("#cerca").attr('disabled', 'disabled');
-				}
-			});
-			$('#testo').keypress(function(e) {
-				if (e.keyCode == 13)
-					$('#cerca').click();
-			});
-
-			$("#cerca").click(function() {
-				$("#contenuto").html("");
-				$("a").each(caricaPagina);
-			});
-		});
-	</script>
 </body>
+
 </html>
